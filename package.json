@@ -1,0 +1,19 @@
+{
+  "name": "crashreport",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dateformat": "^1.0.12",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-replace": "^0.5.4",
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.1"
+  }
+}
