@@ -35,6 +35,8 @@ function quote(val) {
         try {
             var tMessage = null;
             var tClassName = null;
+            var osSdk = null;
+            var osRelease = null;
             var crMid = null;
             var content = JSON.parse(file.contents.toString());
             var crdate = content.date;
@@ -42,20 +44,35 @@ function quote(val) {
             var fnmatches = filenamePattern.exec(filename);
             crMid = fnmatches[2]
             var t = content.throwable;
+            var os = content.os;
+            var applicationInfo = content.applicationInfo;
+            var versionName = null;
 
             if (t) {
                 tMessage = t.message;
                 tClassName = t.className;
             }
 
+            if (os) {
+                osSdk = os.SDK_INT,
+                osRelease = os.RELEASE
+            }
+
+            if (applicationInfo) {
+                versionName = applicationInfo.versionName;
+            }
+
             var insertStmt =
                 'insert into '
                 + (options.table || 'crashreport')
-                + ' (mid, ts, ex, msg) values ('
+                + ' (mid, ts, ex, msg, midversion, os_sdk, os_release) values ('
                 + quote(crMid) + ', '
                 + quote(crdate) + ', '
                 + quote(tClassName) + ', '
-                + quote(tMessage)
+                + quote(tMessage) + ', '
+                + quote(versionName) + ', '
+                + osSdk + ', '
+                + quote(osRelease)
                 + ');'
 
             joinedBuffer = Buffer.concat([joinedBuffer, new Buffer(insertStmt + '\n')]);
