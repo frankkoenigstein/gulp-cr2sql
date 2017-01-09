@@ -45,7 +45,7 @@ function quote(val) {
             crMid = fnmatches[2]
             var t = content.throwable;
             var os = content.os;
-            var applicationInfo = content.applicationInfo;
+            var packageInfo = content.packageInfo;
             var versionName = null;
 
             if (t) {
@@ -58,8 +58,8 @@ function quote(val) {
                 osRelease = os.RELEASE
             }
 
-            if (applicationInfo) {
-                versionName = applicationInfo.versionName;
+            if (packageInfo) {
+                versionName = packageInfo.versionName;
             }
 
             var insertStmt =
