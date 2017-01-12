@@ -87,11 +87,10 @@ function quote(val) {
     }
 
     function endStream(cb) {
-        var path = (options.filename || 'crashreport_' + dateFormat(new Date(), 'yyyy-mm-dd_HH-MM-ss') + ".sql");
+        var p = (options.filename || 'crashreport_' + dateFormat(new Date(), 'yyyy-mm-dd_HH-MM-ss') + ".sql");
 
         var joinedFile = new Vinyl({
-            cwd: __dirname,
-            path: path,
+            path: p,
             contents: new Buffer(joinedBuffer)
         });
 
