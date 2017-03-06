@@ -13,7 +13,7 @@ function compile(options) {
 
 function quote(val) {
     if (typeof val === 'string') {
-        return "'" + val + "'";
+        return "'" + val.replace(/'/g, "\\'") + "'";
     }
     else if (val === undefined) {
         return null;
